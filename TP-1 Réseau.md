@@ -33,3 +33,98 @@ Nous avons simplement été dans le même menu, onglet "propiété", puis IPV4. 
 
 Lors de notre changement d'adresse IP. Nous avons perdus effectivement l'accès à internent. En effet, notre adresse IP nous permettant de nous connecter à changé. Ce qui nous disqualifie ainsi de l'accès précédemment obtenu. Nous devons alors retrouver un accès à internet en redemandant une nouvelle ip au DNS. 
 
+# II. Exploration locale en Duo 
+
+### II.3 
+
+![](https://i.imgur.com/kzkce6n.png)
+
+Notre IP a bien changé : 
+
+```
+PS C:\Users\lucas>ipconfig /all
+  
+   
+   Carte Ethernet Ethernet :
+
+   Suffixe DNS propre à la connexion. . . :
+   Description. . . . . . . . . . . . . . : Realtek Gaming GbE Family Controller
+   Adresse physique . . . . . . . . . . . : C0-18-03-59-30-32
+   DHCP activé. . . . . . . . . . . . . . : Non
+   Configuration automatique activée. . . : Oui
+   Adresse IPv6 de liaison locale. . . . .: fe80::e1c2:fd45:f4f0:e17d%18(préféré)
+   Adresse IPv4. . . . . . . . . . . . . .: 10.10.10.251(préféré)
+   Masque de sous-réseau. . . . . . . . . : 255.255.255.0
+   Passerelle par défaut. . . . . . . . . :
+   IAID DHCPv6 . . . . . . . . . . . : 163584003
+   DUID de client DHCPv6. . . . . . . . : 00-01-00-01-29-6A-1A-C4-C0-18-03-59-30-32
+   NetBIOS sur Tcpip. . . . . . . . . . . : Activé
+```
+   
+Les deux machines se joingent : 
+
+``` 
+PS C:\Users\titim> ping  10.10.10.250
+
+Envoi d’une requête 'Ping'  10.10.10.250 avec 32 octets de données :
+Réponse de 10.10.10.250 : octets=32 temps=1 ms TTL=128
+Réponse de 10.10.10.250 : octets=32 temps=1 ms TTL=128
+Réponse de 10.10.10.250 : octets=32 temps=1 ms TTL=128
+Réponse de 10.10.10.250 : octets=32 temps=2 ms TTL=128
+
+Statistiques Ping pour 10.10.10.250:
+    Paquets : envoyés = 4, reçus = 4, perdus = 0 (perte 0%),
+Durée approximative des boucles en millisecondes :
+    Minimum = 1ms, Maximum = 2ms, Moyenne = 1ms
+```
+
+Voici l'adresse MAC du collègue : 
+
+``` 
+arp -a
+Interface : 10.10.10.251 --- 0x12
+  Adresse Internet      Adresse physique      Type
+  10.10.10.250          b0-25-aa-47-c7-a4     dynamique
+  10.10.10.255          ff-ff-ff-ff-ff-ff     statique
+  169.254.139.228       b0-25-aa-47-c7-a4     dynamique
+  224.0.0.22            01-00-5e-00-00-16     statique
+  224.0.0.251           01-00-5e-00-00-fb     statique
+  224.0.0.252           01-00-5e-00-00-fc     statique
+  239.255.255.250       01-00-5e-7f-ff-fa     statique
+  255.255.255.255       ff-ff-ff-ff-ff-ff     statique![](https://i.imgur.com/vcmGB1k.png)
+```
+
+### II.4 
+
+![](https://i.imgur.com/GbI9iFF.png)
+
+On test l'accès internet : 
+```
+PS C:\Users\titim> ping 1.1.1.1
+
+Envoi d’une requête 'Ping'  1.1.1.1 avec 32 octets de données :
+Réponse de 1.1.1.1 : octets=32 temps=20 ms TTL=55
+Réponse de 1.1.1.1 : octets=32 temps=20 ms TTL=55
+Réponse de 1.1.1.1 : octets=32 temps=21 ms TTL=55
+Réponse de 1.1.1.1 : octets=32 temps=20 ms TTL=55
+
+Statistiques Ping pour 1.1.1.1:
+    Paquets : envoyés = 4, reçus = 4, perdus = 0 (perte 0%),
+Durée approximative des boucles en millisecondes :
+    Minimum = 20ms, Maximum
+```
+
+Internet passe bien de l'autre côté : 
+
+````
+ PS C:\Users\titim> tracert 192.168.137.2
+
+Détermination de l’itinéraire vers DESKTOP-0JKFI2T [192.168.137.2]
+avec un maximum de 30 sauts :
+
+  1     2 ms     1 ms     1 ms  DESKTOP-0JKFI2T [192.168.137.2]
+
+Itinéraire déterminé.
+````
+
+## 5. 
