@@ -210,18 +210,32 @@ Date d'expiration du bail DHCP : vendredi 7 octobre 2022 08:59:23
 ### III.2
 
 Adresse IP DNS : 8.8.8.8
+                 8.8.4.4
+                 1.1.1.1
 
 ![](https://i.imgur.com/WcjAyS4.png)
 
-Ici on peut voir l'IP de google.com : 142.250.179.78
-Ansi que celles d'ynov : 104.26.10.233
-                         172.67.74.226
-                         104.26.11.233
+Ici on peut voir l'IP de google.com : 
+
+142.250.179.78
+
+Ansi que celles d'ynov : 
+
+104.26.10.233
+172.67.74.226
+104.26.11.233
+
+On a plusieurs adresses IP pour plusieurs serveurs différents. Afin de probablement faire de la répartition de charge entre ces serveurs.
 
 ![](https://i.imgur.com/Dkve1QR.png)
 
-La première adresse donnée correspond à Google. 
-Tandis que la suivante correspond à autre chose.
+La première adresse on ne parvient pas à trouver le domaine. 
+Tandis que la suivante correspond à une machine précise nommée ici.
 
 ## IV.1
 
+![](https://i.imgur.com/9Eef9Jf.png)
+
+![](https://i.imgur.com/NCGT1TW.png)
+
+![](https://i.imgur.com/9v8O7xz.png)
