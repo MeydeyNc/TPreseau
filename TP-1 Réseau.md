@@ -127,7 +127,7 @@ avec un maximum de 30 sauts :
 Itinéraire déterminé.
 ````
 
-### 5. Petit chat privé
+## 5. Petit chat privé
 
 ##### PC serveur : 
 ```
@@ -177,3 +177,51 @@ PS C:\Users\mmederic> netstat -a -n -b | Select-String 8888
 ### 6. Firewall
 
 ![](https://i.imgur.com/XNnmoOO.png)
+
+## III.1
+
+Pour l'adresse IP du DHCP d'Ynov : 
+````
+ipconfig /all
+
+Carte réseau sans fil Wi-Fi :
+
+   Suffixe DNS propre à la connexion. . . :
+   Description. . . . . . . . . . . . . . : Intel(R) Wireless-AC 9461
+   Adresse physique . . . . . . . . . . . : B8-9A-2A-4C-FE-78
+   DHCP activé. . . . . . . . . . . . . . : Oui
+   Configuration automatique activée. . . : Oui
+   Adresse IPv6 de liaison locale. . . . .: fe80::a42d:3dd3:a574:27df%7(préféré)
+   Adresse IPv4. . . . . . . . . . . . . .: 10.33.17.10(préféré)
+   Masque de sous-réseau. . . . . . . . . : 255.255.252.0
+   Bail obtenu. . . . . . . . . . . . . . : jeudi 6 octobre 2022 08:59:24
+   Bail expirant. . . . . . . . . . . . . : vendredi 7 octobre 2022 08:59:23
+   Passerelle par défaut. . . . . . . . . : 10.33.19.254
+   Serveur DHCP . . . . . . . . . . . . . : 10.33.19.254
+   IAID DHCPv6 . . . . . . . . . . . : 95984170
+   DUID de client DHCPv6. . . . . . . . : 00-01-00-01-28-50-30-E8-B8-9A-2A-4C-FE-78
+   Serveurs DNS. . .  . . . . . . . . . . : 8.8.8.8
+                                       8.8.4.4
+                                       1.1.1.1
+````
+Nous pouvons voir l'adresse du Serveur DHCP : 10.33.19.254
+Date d'expiration du bail DHCP : vendredi 7 octobre 2022 08:59:23
+
+### III.2
+
+Adresse IP DNS : 8.8.8.8
+
+![](https://i.imgur.com/WcjAyS4.png)
+
+Ici on peut voir l'IP de google.com : 142.250.179.78
+Ansi que celles d'ynov : 104.26.10.233
+                         172.67.74.226
+                         104.26.11.233
+
+![](https://i.imgur.com/Dkve1QR.png)
+
+La première adresse donnée correspond à Google. 
+Tandis que la suivante correspond à autre chose.
+
+## IV.1
+
