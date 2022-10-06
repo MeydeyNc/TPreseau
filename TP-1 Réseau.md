@@ -127,4 +127,50 @@ avec un maximum de 30 sauts :
 Itinéraire déterminé.
 ````
 
-## 5. 
+### 5. Petit chat privé
+
+##### PC serveur : 
+```
+PS C:\Users\Initi\netcat-1.11> .\nc.exe -l -p 8888
+```
+##### PC client: 
+```
+PS C:\Users\maxfe\Desktop\netcat-win32-1.11\netcat-1.11> .\nc.exe 192.168.137.1 8888
+```
+#### CONVERSATION : 
+```
+[fmaxance] : Salut !
+[mmederic] : Salut
+[mmederic] : ça dit quoi ?
+[fmaxance] : rien de spécial mise à part que j'aime les pommes et toi ?
+[mmederic] : bah écoute j'aime les pommes aussi
+[fmaxance] : SUPER au revoir
+```
+##### Connexion en cours
+
+```
+PS C:\Users\mmederic> netstat -a -n -b
+
+  TCP    192.168.137.1:8888     192.168.137.2:56320    ESTABLISHED
+ [nc.exe]
+```
+##### Pour aller un peu plus loin
+
+IP non définie : 
+```
+PS C:\Users\mmederic\netcat-1.11> ./nc.exe -l -p 8888
+
+PS C:\Users\mmederic> netstat -a -n -b | Select-String 8888
+
+  TCP    0.0.0.0:8888           0.0.0.0:0              LISTENING
+```
+N'importe qui peut se connecter sur le serveur car l'IP est non définie.
+
+
+IP définie : 
+```
+PS C:\Users\mmederic\netcat-1.11> ./nc.exe -l -p 8888 -s 192.168.137.1
+PS C:\Users\mmederic> netstat -a -n -b | Select-String 8888
+
+  TCP    192.168.137.1:8888     0.0.0.0:0              LISTENING
+```
