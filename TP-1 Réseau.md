@@ -174,3 +174,7 @@ PS C:\Users\mmederic> netstat -a -n -b | Select-String 8888
 
   TCP    192.168.137.1:8888     0.0.0.0:0              LISTENING
 ```
+### 6. Firewall
+#### 🌞 Activez et configurez votre firewall
+
+![](https://i.imgur.com/XNnmoOO.png)
