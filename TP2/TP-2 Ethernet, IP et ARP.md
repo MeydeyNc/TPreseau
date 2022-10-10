@@ -98,6 +98,14 @@ Interface : 192.168.56.1 --- 0x28
 ````
 Nous pouvons constater la réapparition de l'adresse IP ping précédemment (celle de notre VM).
 
+Les adresses sources : 
+Pour la première trame : on retrouve l'adresse MAC du PC. 
+Pour la seconde trame : PsCompu_15:f6:66 correspond à l'adresse MAC de la VM concerné. 
+
+Les adresses destinatrices : 
+Pour la première trame : Ici le PC Broadcast pour essayer de demander à quiconque à l'IP spécifié. 
+Pour la seconde : Celle-ci concerne notre PC, c'est son adresse MAC. On nous renvoie les informations.
+
 ## III. 
 
 Dans le PCAP joint, "trames ARP DORA" nous constatons les 4 trames intéressantes des informations de la nouvelle demande.
