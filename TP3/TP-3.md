@@ -368,7 +368,8 @@ DHCPRELEASE of 10.3.1.21 on enp0s8 to 10.3.1.11 port 67 (xid=0x32183e00)
 
 Pour demande une nouvelle adresse IP : 
 
-```` sudo dhclient -v enp0s8
+```` 
+sudo dhclient -v enp0s8
 Internet Systems Consortium DHCP Client 4.4.2b1
 Copyright 2004-2019 Internet Systems Consortium.
 All rights reserved.
@@ -381,7 +382,8 @@ DHCPDISCOVER on enp0s8 to 255.255.255.255 port 67 interval 4 (xid=0x71a09545)
 DHCPOFFER of 10.3.1.21 from 10.3.1.11
 DHCPREQUEST for 10.3.1.21 on enp0s8 to 255.255.255.255 port 67 (xid=0x71a09545)
 DHCPACK of 10.3.1.21 from 10.3.1.11 (xid=0x71a09545)
-bound to 10.3.1.21 -- renewal in 415 seconds.````
+bound to 10.3.1.21 -- renewal in 415 seconds.
+````
 
 Et voilà : 
 
