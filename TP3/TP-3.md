@@ -430,7 +430,7 @@ default via 10.3.1.254 dev enp0s8 proto dhcp src 10.3.1.20 metric 100
 
 La route fonctionne : 
 
-``
+````
 [mmederic@localhost ~]$ ping youtube.com
 PING youtube.com (142.250.179.78) 56(84) bytes of data.
 64 bytes from par21s19-in-f14.1e100.net (142.250.179.78): icmp_seq=1 ttl=114 time=20.1 ms
@@ -441,11 +441,11 @@ PING youtube.com (142.250.179.78) 56(84) bytes of data.
 --- youtube.com ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 2997ms
 rtt min/avg/max/mdev = 15.993/18.764/20.240/1.699 ms
-``
+````
 
 La commande ``dig`` fonctionne : 
 
-``
+````
 [mmederic@localhost ~]$ dig youtube.com
 
 ; <<>> DiG 9.16.23-RH <<>> youtube.com
@@ -466,7 +466,7 @@ youtube.com.            60      IN      A       216.58.209.238
 ;; SERVER: 1.1.1.1#53(1.1.1.1)
 ;; WHEN: Fri Nov 04 17:48:13 CET 2022
 ;; MSG SIZE  rcvd: 56
-``
+````
 
 ### III.2. 
 
