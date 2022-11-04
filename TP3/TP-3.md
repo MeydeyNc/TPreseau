@@ -258,13 +258,13 @@ Voici ce que nous capturons dans notre analyse du ping vers 8.8.8.8 :
 
 Nous allons donc configurer un DHCP sur Michel (John) : 
 Premièrement nous installons la possibilité de créer un serveur dhcp sur la VM. 
-Nous téléchargeons donc ce dont nous avons besoin : ``sudo dnf install dhcp-server -y``
+Nous téléchargeons donc ce dont nous avons besoin : ```` sudo dnf install dhcp-server -y ````
 
 Puis direction la création d'un fichier primordial pour notre serveur dhcp : 
-`` sudo nano /etc/dhcp/dhcpd.conf``
+```` sudo nano /etc/dhcp/dhcpd.conf ````
 
 Voici ce que nous pouvons y trouver : 
-`` 
+```` 
 // DHCP Server Configuration file.
 // see /usr/share/doc/dhcp-server/dhcpd.conf.example
 // see dhcpd.conf(5) man page
@@ -284,13 +284,13 @@ option subnet-mask 255.255.255.0;
 option domain-name-servers 10.3.1.1;
 
 }
-``
+````
 Puis nous lancons notre nouveau dhcp : 
-``sudo systemctl enable --now dhcpd``
+```` sudo systemctl enable --now dhcpd ````
 
 Passons désormais à "Bob". 
-Un petit ``ip a `` pour mieux se situer : 
-`` [mmederic@localhost ~]$ ip a
+Un petit ````ip a ```` pour mieux se situer : 
+```` [mmederic@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -302,12 +302,12 @@ Un petit ``ip a `` pour mieux se situer :
     inet 10.3.1.5/24 brd 10.3.1.255 scope global dynamic noprefixroute enp0s8
        valid_lft 807sec preferred_lft 807sec
     inet6 fe80::a00:27ff:fe8e:a5d2/64 scope link
-       valid_lft forever preferred_lft forever``
+       valid_lft forever preferred_lft forever````
 Le dhcp à l'air de fonctionner ! 
 Nous avons une adresse ip pour bob qui vient d'être créé dans le même réseau que Michel(John).
 
 Petite update : 
-`` 
+```` 
 [mmederic@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -321,9 +321,9 @@ Petite update :
        valid_lft 799sec preferred_lft 799sec
     inet6 fe80::a00:27ff:fe8e:a5d2/64 scope link
        valid_lft forever preferred_lft forever
-``
+````
  Nous venons de ré-actuliser le fichier coeur du serveur DHCP : 
- `` 
+ ```` 
 default-lease-time 900;
 max-lease-time 10800;
 
@@ -336,7 +336,7 @@ subnet 10.3.1.0 netmask 255.255.255.0 {
         option domain-name-servers 1.1.1.1, 8.8.8.8;
 
 }
-`` 
+```` 
 Pourquoi ? Car si une adresse IP statique se trouve dans la range de notre dhcp, cela peut (je suppose) créer des problèmes.
 Nous avons donc modifié la "fourchette" d'adresses IP disponibles à la distribution par le DHCP.
 Nous avons aussi ajouter des serveurs DNS potables et surtout utilisables. 
@@ -348,7 +348,7 @@ Nous avons notre adresse IP que nous allons libérer pour en acquérir une autre
 
 Afin de lâcher l'adresse actuelle : 
 
-`` sudo dhclient -v -r enp0s8
+```` sudo dhclient -v -r enp0s8
 Removed stale PID file
 Internet Systems Consortium DHCP Client 4.4.2b1
 Copyright 2004-2019 Internet Systems Consortium.
@@ -358,12 +358,12 @@ For info, please visit https://www.isc.org/software/dhcp/
 Listening on LPF/enp0s8/08:00:27:8e:a5:d2
 Sending on   LPF/enp0s8/08:00:27:8e:a5:d2
 Sending on   Socket/fallback
-DHCPRELEASE of 10.3.1.21 on enp0s8 to 10.3.1.11 port 67 (xid=0x32183e00)``
+DHCPRELEASE of 10.3.1.21 on enp0s8 to 10.3.1.11 port 67 (xid=0x32183e00)````
 
 
 Pour demande une nouvelle adresse IP : 
 
-`` sudo dhclient -v enp0s8
+```` sudo dhclient -v enp0s8
 Internet Systems Consortium DHCP Client 4.4.2b1
 Copyright 2004-2019 Internet Systems Consortium.
 All rights reserved.
@@ -376,10 +376,10 @@ DHCPDISCOVER on enp0s8 to 255.255.255.255 port 67 interval 4 (xid=0x71a09545)
 DHCPOFFER of 10.3.1.21 from 10.3.1.11
 DHCPREQUEST for 10.3.1.21 on enp0s8 to 255.255.255.255 port 67 (xid=0x71a09545)
 DHCPACK of 10.3.1.21 from 10.3.1.11 (xid=0x71a09545)
-bound to 10.3.1.21 -- renewal in 415 seconds.``
+bound to 10.3.1.21 -- renewal in 415 seconds.````
 
 Et voilà : 
-`` [mmederic@localhost ~]$ ip a
+```` [mmederic@localhost ~]$ ip a
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -393,10 +393,10 @@ Et voilà :
     inet 10.3.1.21/24 brd 10.3.1.255 scope global secondary dynamic enp0s8
        valid_lft 945sec preferred_lft 945sec
     inet6 fe80::a00:27ff:fe8e:a5d2/64 scope link
-       valid_lft forever preferred_lft forever``
+       valid_lft forever preferred_lft forever````
        
 Bob peut ping sa passerelle : 
-`` [mmederic@localhost ~]$ ping 10.3.1.254
+```` [mmederic@localhost ~]$ ping 10.3.1.254
 PING 10.3.1.254 (10.3.1.254) 56(84) bytes of data.
 64 bytes from 10.3.1.254: icmp_seq=1 ttl=64 time=0.460 ms
 64 bytes from 10.3.1.254: icmp_seq=2 ttl=64 time=0.654 ms
@@ -405,15 +405,15 @@ PING 10.3.1.254 (10.3.1.254) 56(84) bytes of data.
 ^C
 --- 10.3.1.254 ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 3122ms
-rtt min/avg/max/mdev = 0.460/0.560/0.654/0.068 ms``
+rtt min/avg/max/mdev = 0.460/0.560/0.654/0.068 ms````
 
 Bob a bien une adresse par défaut : 
-``[mmederic@localhost ~]$ ip r s
+````[mmederic@localhost ~]$ ip r s
 default via 10.3.1.254 dev enp0s8 proto dhcp src 10.3.1.20 metric 100
-10.3.1.0/24 dev enp0s8 proto kernel scope link src 10.3.1.20 metric 100``
+10.3.1.0/24 dev enp0s8 proto kernel scope link src 10.3.1.20 metric 100````
 
 La route fonctionne : 
-``[mmederic@localhost ~]$ ping youtube.com
+````[mmederic@localhost ~]$ ping youtube.com
 PING youtube.com (142.250.179.78) 56(84) bytes of data.
 64 bytes from par21s19-in-f14.1e100.net (142.250.179.78): icmp_seq=1 ttl=114 time=20.1 ms
 64 bytes from par21s19-in-f14.1e100.net (142.250.179.78): icmp_seq=2 ttl=114 time=20.2 ms
@@ -422,10 +422,11 @@ PING youtube.com (142.250.179.78) 56(84) bytes of data.
 ^C
 --- youtube.com ping statistics ---
 4 packets transmitted, 4 received, 0% packet loss, time 2997ms
-rtt min/avg/max/mdev = 15.993/18.764/20.240/1.699 ms``
+rtt min/avg/max/mdev = 15.993/18.764/20.240/1.699 ms````
 
-La commande ``dig`` fonctionne : 
-``[mmederic@localhost ~]$ dig youtube.com
+La commande ````dig```` fonctionne : 
+````
+[mmederic@localhost ~]$ dig youtube.com
 
 ; <<>> DiG 9.16.23-RH <<>> youtube.com
 ;; global options: +cmd
@@ -444,7 +445,8 @@ youtube.com.            60      IN      A       216.58.209.238
 ;; Query time: 33 msec
 ;; SERVER: 1.1.1.1#53(1.1.1.1)
 ;; WHEN: Fri Nov 04 17:48:13 CET 2022
-;; MSG SIZE  rcvd: 56``
+;; MSG SIZE  rcvd: 56
+``
 
 ### III.2. 
 
