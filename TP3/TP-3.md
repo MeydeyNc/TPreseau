@@ -470,3 +470,6 @@ youtube.com.            60      IN      A       216.58.209.238
 
 ### III.2. 
 
+Le serveur DHCP présent en 10.3.1.11, propose l'IP 10.3.1.21 .
+DNS proposé en 1.1.1.1 
+Voir fichier tp3_dhcp.pcap. 
