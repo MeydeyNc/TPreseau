@@ -411,7 +411,7 @@ $TTL 86400
 @ IN NS dns-server.tp4.b1.
 
 dns-server IN A 10.4.1.201
-gatson      IN A 10.4.1.11
+gaston      IN A 10.4.1.11
 ````
  Le cat du fichier zone inverse : 
 
@@ -431,7 +431,7 @@ $TTL 86400
 @ IN NS dns-server.tp4.b1.
 
 201 IN PTR dns-server.tp4.b1.
-11 IN PTR node1.tp4.b1.
+11 IN PTR gaston.tp4.b1.
 ````
  Voici le systemctl status : 
 
