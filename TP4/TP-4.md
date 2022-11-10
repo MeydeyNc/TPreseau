@@ -28,7 +28,7 @@ IP DEST : 13.224.131.35
 PORT SRC : 54922
 PORT DEST : 80
 
-PCAP : 
+PCAP : TP4/tp4_EpicGameClient.pcapng
  
  
  Gmail - TCP: 
@@ -288,3 +288,147 @@ Last login: Thu Nov 10 10:02:12 2022 from 10.4.1.1
 logout
 Connection to gaston closed.
 ````
+PCAP : 
+
+Repérer la connexion ssh depuis la VM : 
+
+````
+[mmederic@gaston ~]$ ss
+tcp      ESTAB    0         52                              10.4.1.11:ssh               10.4.1.1:58207
+````
+
+J'utilise la commande pour repérer la connexion depuis ma machine : 
+
+````
+PS C:\Users\Initi> netstat -n -q
+TCP    10.4.1.1:58253         10.4.1.11:22           ESTABLISHED
+````
+## II. 2.
+
+Routeur actif. 
+Route par défaut activée sur gaston. 
+
+## III. 2. 
+
+###### Voici le cat du premier fichier du named.conf : 
+
+````
+[mmederic@dns ~]$ [mmederic@dns ~]$ sudo cat /etc/named.conf
+[sudo] password for mmederic:
+//
+// named.conf
+//
+// Provided by Red Hat bind package to configure the ISC BIND named(8) DNS
+// server as a caching only nameserver (as a localhost DNS resolver only).
+//
+// See /usr/share/doc/bind*/sample/ for example named configuration files.
+//
+
+options {
+        listen-on port 53 { 127.0.0.1; any; };
+        listen-on-v6 port 53 { ::1; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { localhost; any; };
+        allow-query-cache {localhost; any; };
+
+        /*
+         - If you are building an AUTHORITATIVE DNS server, do NOT enable recursion.
+         - If you are building a RECURSIVE (caching) DNS server, you need to enable
+           recursion.
+         - If your recursive DNS server has a public IP address, you MUST enable access
+           control to limit queries to your legitimate users. Failing to do so will
+           cause your server to become part of large scale DNS amplification
+           attacks. Implementing BCP38 within your network would greatly
+           reduce such attack surface
+        */
+        recursion yes;
+
+        dnssec-validation yes;
+
+        managed-keys-directory "/var/named/dynamic";
+        geoip-directory "/usr/share/GeoIP";
+
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+
+        /* https://fedoraproject.org/wiki/Changes/CryptoPolicy */
+        include "/etc/crypto-policies/back-ends/bind.config";
+};
+
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+zone "." IN {
+        type hint;
+        file "named.ca";
+};
+
+zone "tp4.b1" IN {
+        type master;
+        file "tp4.b1.db";
+        allow-update {none; };
+        allow-query {any; };
+};
+
+zone "1.4.10.in-addr.arpa" IN {
+        type master;
+        file "tp4.b1.rev";
+        allow-update { none; };
+        allow-query { any; };
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+````
+
+##### Le cat du fichier zone : 
+
+````
+[mmederic@dns ~]$ [mmederic@dns ~]$ sudo cat /var/named/tp4.b1.db
+
+
+$TTL 86400
+@ IN SOA dns-server.tp4.b1. admin.tp4.b1. (
+        2019061800 ;Serial
+        3600 ;Refresh
+        1800 ;Retry
+        604800 ;Expire
+        86400 ;Minimum TTL
+)
+
+@ IN NS dns-server.tp4.b1.
+
+dns-server IN A 10.4.1.201
+node1      IN A 10.4.1.11
+````
+##### Le cat du fichier zone inverse : 
+
+````
+[mmederic@dns ~]$ sudo cat /var/named/tp4.b1.rev
+
+
+$TTL 86400
+@ IN SOA dns-server.tp4.b1. admin.tp4.b1. (
+        2019061800 ;Serial
+        3600 ;Refresh
+        1800 ;Retry
+        604800 ;Expire
+        86400 ;Minimum TTL
+)
+
+@ IN NS dns-server.tp4.b1.
+
+201 IN PTR dns-server.tp4.b1.
+11 IN PTR node1.tp4.b1.
+````
+
+
