@@ -1,0 +1,290 @@
+# TP-4
+
+## I.1
+
+Epic Games launcher - TCP : 
+
+````
+PS C:\Windows\system32> netstat -b
+
+Connexions actives
+
+  Proto  Adresse locale         Adresse distante       État
+  TCP    10.33.19.231:49685     20.199.120.182:https   ESTABLISHED
+  WpnService
+ [svchost.exe]
+  TCP    10.33.19.231:52109     52.155.161.106:https   CLOSE_WAIT
+ [SystemSettings.exe]
+  TCP    10.33.19.231:52652     104.18.13.173:https    ESTABLISHED
+ [EpicWebHelper.exe]
+  TCP    10.33.19.231:52656     ec2-54-172-165-126:https  ESTABLISHED
+ [EpicGamesLauncher.exe]
+  TCP    10.33.19.231:52658     ec2-34-197-109-138:https  ESTABLISHED
+ [EpicGamesLauncher.exe]
+ ````
+IP SRC : 10.33.19.231
+IP DEST : 13.224.131.35
+
+PORT SRC : 54922
+PORT DEST : 80
+
+PCAP : 
+ 
+ 
+ Gmail - TCP: 
+ 
+ ````
+ PS C:\Windows\system32> netstat -b
+
+Connexions actives
+
+  Proto  Adresse locale         Adresse distante       État
+  TCP    10.33.19.231:52109     52.155.161.106:https   CLOSE_WAIT
+ [SystemSettings.exe]
+  TCP    10.33.19.231:52249     a865a9e11bc2c0d65:https  ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52250     ec2-35-165-176-211:https  ESTABLISHED
+ [firefox.exe]
+ ````
+IP SRC : 10.33.19.231
+IP DEST : 142.250.179.101
+
+PORT SRC : 52380
+PORT DEST : 443
+ 
+ 
+ PCAP : 
+ 
+ Hackmd.io - TCP: 
+ 
+ ````
+  PS C:\Windows\system32> netstat -b
+
+Connexions actives
+ 
+   TCP    10.33.19.231:52418     140:https              ESTABLISHED
+ [firefox.exe]
+ ````
+IP SRC : 10.33.19.231
+IP DEST : 75.2.77.152
+
+PORT SRC : 52417
+PORT DEST : 443
+
+ PCAP : 
+ 
+Microsoft TEAMS - TCP: 
+
+````
+PS C:\Windows\system32> netstat -b -n
+
+Connexions actives
+
+  TCP    10.33.19.231:52552     96.16.249.19:443       ESTABLISHED
+ [SearchApp.exe]
+  TCP    10.33.19.231:52554     52.113.194.132:443     ESTABLISHED
+ [Teams.exe]
+  TCP    10.33.19.231:52555     13.107.246.43:443      ESTABLISHED
+ [SearchApp.exe]
+  TCP    10.33.19.231:52556     204.79.197.222:443     ESTABLISHED
+ [SearchApp.exe]
+  TCP    10.33.19.231:52557     152.199.21.118:443     ESTABLISHED
+ [SearchApp.exe]
+  TCP    10.33.19.231:52558     204.79.197.222:443     ESTABLISHED
+ [SearchApp.exe]
+  TCP    10.33.19.231:52559     52.113.194.132:443     ESTABLISHED
+ [Teams.exe]
+  TCP    10.33.19.231:52560     52.112.120.193:443     ESTABLISHED
+````
+IP SRC : 10.33.19.231
+IP DEST : 52.111.231.0
+
+PORT SRC : 52589
+PORT DEST : 443
+
+PCAP : 
+
+Twitch.tv - TCP : 
+
+````
+PS C:\Windows\system32> netstat -b -n
+
+Connexions actives
+
+  Proto  Adresse locale         Adresse distante       État
+  TCP    10.33.19.231:52109     52.155.161.106:443     CLOSE_WAIT
+ [SystemSettings.exe]
+  TCP    10.33.19.231:52251     20.90.152.133:443      ESTABLISHED
+  WpnService
+ [svchost.exe]
+  TCP    10.33.19.231:52550     20.54.232.160:443      TIME_WAIT
+  TCP    10.33.19.231:52552     96.16.249.19:443       CLOSE_WAIT
+ [SearchApp.exe]
+  TCP    10.33.19.231:52557     152.199.21.118:443     CLOSE_WAIT
+ [SearchApp.exe]
+  TCP    10.33.19.231:52595     34.107.221.82:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52596     34.117.237.239:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52597     34.107.221.82:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52598     34.120.208.123:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52599     92.122.50.48:80        TIME_WAIT
+  TCP    10.33.19.231:52600     34.213.140.56:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52602     216.58.214.67:80       TIME_WAIT
+  TCP    10.33.19.231:52603     34.120.115.102:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52606     44.238.39.101:443      TIME_WAIT
+  TCP    10.33.19.231:52608     44.238.39.101:443      TIME_WAIT
+  TCP    10.33.19.231:52609     34.218.214.159:443     TIME_WAIT
+  TCP    10.33.19.231:52610     34.214.139.174:443     TIME_WAIT
+  TCP    10.33.19.231:52611     93.184.220.29:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52613     35.186.227.140:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52615     99.83.179.177:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52616     18.155.152.42:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52620     18.155.153.48:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52625     151.101.2.217:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52626     216.58.214.67:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52627     54.164.66.83:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52629     18.155.153.48:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52630     18.179.124.93:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52631     18.155.152.42:80       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52632     64.233.184.154:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52633     52.219.136.214:443     TIME_WAIT
+  TCP    10.33.19.231:52635     216.58.209.234:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52638     20.54.232.160:443      ESTABLISHED
+  CDPUserSvc_373f9
+ [svchost.exe]
+  TCP    10.33.19.231:52639     18.155.145.43:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52640     151.101.62.167:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52645     151.101.2.167:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52646     54.191.87.3:443        ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52648     199.232.174.167:443    ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52649     35.82.168.40:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52650     52.38.244.113:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52651     151.101.62.167:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52652     18.155.145.97:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52659     151.101.62.167:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52660     151.101.62.167:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52661     151.101.62.167:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52662     18.155.136.131:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52663     18.155.136.131:443     TIME_WAIT
+  TCP    10.33.19.231:52666     18.155.136.131:443     TIME_WAIT
+  TCP    10.33.19.231:52667     18.155.136.131:443     TIME_WAIT
+  TCP    10.33.19.231:52669     18.155.153.81:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52670     18.155.153.81:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52671     18.155.153.81:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52672     18.155.153.81:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52674     18.155.153.97:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52676     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52677     18.155.153.5:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52678     35.82.19.90:443        ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52680     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52681     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52682     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52683     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52684     23.160.0.254:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52685     52.223.198.2:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52686     54.217.99.96:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52687     18.155.145.3:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52688     18.155.153.79:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52692     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52693     18.155.146.190:443     TIME_WAIT
+  TCP    10.33.19.231:52696     18.155.145.3:443       TIME_WAIT
+  TCP    10.33.19.231:52697     18.155.145.94:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52699     18.155.145.6:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52701     18.155.145.6:443       TIME_WAIT
+  TCP    10.33.19.231:52702     52.223.195.77:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52706     18.155.145.48:443      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52707     23.160.0.0:443         ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52708     54.216.38.40:443       ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52709     18.155.138.228:80      ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52710     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52711     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52712     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52713     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52714     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    10.33.19.231:52715     18.155.146.190:443     ESTABLISHED
+ [firefox.exe]
+  TCP    127.0.0.1:52591        127.0.0.1:52592        ESTABLISHED
+ [firefox.exe]
+  TCP    127.0.0.1:52592        127.0.0.1:52591        ESTABLISHED
+ [firefox.exe]
+  TCP    127.0.0.1:52593        127.0.0.1:52594        ESTABLISHED
+ [firefox.exe]
+  TCP    127.0.0.1:52594        127.0.0.1:52593        ESTABLISHED
+ [firefox.exe]
+````
+IP SRC : 52.223.195.77
+IP DEST : 10.33.19.231
+
+PORT SRC : 443
+PORT DEST : 52702
+
+PCAP : 
+
+## II. 1. 
+
+Nous avons utilisé git bash afin d'avoir toute la capture demandée : 
+````
+$ ssh mmederic@gaston
+mmederic@gaston's password:
+Last login: Thu Nov 10 10:02:12 2022 from 10.4.1.1
+[mmederic@gaston ~]$
+[mmederic@gaston ~]$
+[mmederic@gaston ~]$ exit
+logout
+Connection to gaston closed.
+````
