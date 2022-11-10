@@ -28,7 +28,7 @@ IP DEST : 13.224.131.35
 PORT SRC : 54922
 PORT DEST : 80
 
-PCAP : TP4/tp4_EpicGameClient.pcapng
+[PCAP ](./tp4_EpicGameClient.pcapng)
  
  
  Gmail - TCP: 
@@ -53,7 +53,7 @@ PORT SRC : 52380
 PORT DEST : 443
  
  
- PCAP : 
+ [PCAP ](./tp4_Gmail.pcapng) 
  
  Hackmd.io - TCP: 
  
@@ -71,7 +71,7 @@ IP DEST : 75.2.77.152
 PORT SRC : 52417
 PORT DEST : 443
 
- PCAP : 
+ [PCAP](./tp4_Hackmdio.pcapng) 
  
 Microsoft TEAMS - TCP: 
 
@@ -102,7 +102,7 @@ IP DEST : 52.111.231.0
 PORT SRC : 52589
 PORT DEST : 443
 
-PCAP : 
+[PCAP](./tp4_Teams.pcapng) 
 
 Twitch.tv - TCP : 
 
@@ -273,7 +273,7 @@ IP DEST : 10.33.19.231
 PORT SRC : 443
 PORT DEST : 52702
 
-PCAP : 
+[PCAP](./tp4_Twitch.pcapng) 
 
 ## II. 1. 
 
@@ -303,6 +303,9 @@ J'utilise la commande pour repérer la connexion depuis ma machine :
 PS C:\Users\Initi> netstat -n -q
 TCP    10.4.1.1:58253         10.4.1.11:22           ESTABLISHED
 ````
+
+[capture du 3-way handshake](./tp4_ssh.pcapng)
+
 ## II. 2.
 
 Routeur actif. 
@@ -310,7 +313,7 @@ Route par défaut activée sur gaston.
 
 ## III. 2. 
 
-###### Voici le cat du premier fichier du named.conf : 
+ Voici le cat du premier fichier du named.conf : 
 
 ````
 [mmederic@dns ~]$ [mmederic@dns ~]$ sudo cat /etc/named.conf
@@ -390,7 +393,7 @@ include "/etc/named.rfc1912.zones";
 include "/etc/named.root.key";
 ````
 
-##### Le cat du fichier zone : 
+ Le cat du fichier zone : 
 
 ````
 [mmederic@dns ~]$ [mmederic@dns ~]$ sudo cat /var/named/tp4.b1.db
@@ -408,9 +411,9 @@ $TTL 86400
 @ IN NS dns-server.tp4.b1.
 
 dns-server IN A 10.4.1.201
-node1      IN A 10.4.1.11
+gatson      IN A 10.4.1.11
 ````
-##### Le cat du fichier zone inverse : 
+ Le cat du fichier zone inverse : 
 
 ````
 [mmederic@dns ~]$ sudo cat /var/named/tp4.b1.rev
@@ -430,5 +433,84 @@ $TTL 86400
 201 IN PTR dns-server.tp4.b1.
 11 IN PTR node1.tp4.b1.
 ````
+ Voici le systemctl status : 
 
+````
+[mmederic@dns ~]$ sudo systemctl status named
+● named.service - Berkeley Internet Name Domain (DNS)
+     Loaded: loaded (/usr/lib/systemd/system/named.service; enabled; vendor preset: disabled)
+     Active: active (running) since Thu 2022-11-10 11:45:16 CET; 25s ago
+   Main PID: 4057 (named)
+      Tasks: 6 (limit: 4800)
+     Memory: 22.8M
+        CPU: 81ms
+     CGroup: /system.slice/named.service
+             └─4057 /usr/sbin/named -u named -c /etc/named.conf
+
+Nov 10 11:45:16 dns named[4057]: network unreachable resolving './NS/IN': 2001:dc3::35#53
+Nov 10 11:45:16 dns named[4057]: zone tp4.b1/IN: loaded serial 2019061800
+Nov 10 11:45:16 dns named[4057]: all zones loaded
+Nov 10 11:45:16 dns named[4057]: running
+Nov 10 11:45:16 dns systemd[1]: Started Berkeley Internet Name Domain (DNS).
+Nov 10 11:45:16 dns named[4057]: network unreachable resolving './DNSKEY/IN': 2001:500:a8::e#53
+Nov 10 11:45:16 dns named[4057]: network unreachable resolving './DNSKEY/IN': 2001:7fd::1#53
+Nov 10 11:45:16 dns named[4057]: network unreachable resolving './DNSKEY/IN': 2001:500:2d::d#53
+Nov 10 11:45:16 dns named[4057]: managed-keys-zone: Initializing automatic trust anchor management for zone '.'; DNS>
+Nov 10 11:45:16 dns named[4057]: resolver priming query complete
+````
+ Le sudo ss pour vérifier : 
+
+````
+[mmederic@dns ~]$ sudo ss -ltunp
+Netid   State    Recv-Q   Send-Q     Local Address:Port      Peer Address:Port   Process
+udp     UNCONN   0        0             10.4.1.201:53             0.0.0.0:*       users:(("named",pid=4057,fd=31))
+udp     UNCONN   0        0             10.4.1.201:53             0.0.0.0:*       users:(("named",pid=4057,fd=30))
+udp     UNCONN   0        0              127.0.0.1:53             0.0.0.0:*       users:(("named",pid=4057,fd=25))
+udp     UNCONN   0        0              127.0.0.1:53             0.0.0.0:*       users:(("named",pid=4057,fd=24))
+udp     UNCONN   0        0              127.0.0.1:323            0.0.0.0:*       users:(("chronyd",pid=663,fd=5))
+udp     UNCONN   0        0                  [::1]:53                [::]:*       users:(("named",pid=4057,fd=34))
+udp     UNCONN   0        0                  [::1]:53                [::]:*       users:(("named",pid=4057,fd=35))
+udp     UNCONN   0        0                  [::1]:323               [::]:*       users:(("chronyd",pid=663,fd=6))
+tcp     LISTEN   0        10            10.4.1.201:53             0.0.0.0:*       users:(("named",pid=4057,fd=33))
+tcp     LISTEN   0        10            10.4.1.201:53             0.0.0.0:*       users:(("named",pid=4057,fd=32))
+tcp     LISTEN   0        10             127.0.0.1:53             0.0.0.0:*       users:(("named",pid=4057,fd=28))
+tcp     LISTEN   0        10             127.0.0.1:53             0.0.0.0:*       users:(("named",pid=4057,fd=26))
+tcp     LISTEN   0        128              0.0.0.0:22             0.0.0.0:*       users:(("sshd",pid=720,fd=3))
+tcp     LISTEN   0        4096           127.0.0.1:953            0.0.0.0:*       users:(("named",pid=4057,fd=23))
+tcp     LISTEN   0        10                 [::1]:53                [::]:*       users:(("named",pid=4057,fd=36))
+tcp     LISTEN   0        10                 [::1]:53                [::]:*       users:(("named",pid=4057,fd=37))
+tcp     LISTEN   0        128                 [::]:22                [::]:*       users:(("sshd",pid=720,fd=4))
+tcp     LISTEN   0        4096               [::1]:953               [::]:*       users:(("named",pid=4057,fd=38))
+````
+
+## III. 3. 
+
+Nous pouvons ping ``google.com`` avec node1 (gaston) :
+
+````
+[mmederic@gaston ~]$ [mmederic@gaston ~]$ ping google.com
+PING google.com (216.58.214.78) 56(84) bytes of data.
+64 bytes from fra15s10-in-f78.1e100.net (216.58.214.78): icmp_seq=1 ttl=112 time=21.5 ms
+64 bytes from fra15s10-in-f14.1e100.net (216.58.214.78): icmp_seq=2 ttl=112 time=23.0 ms
+64 bytes from fra15s10-in-f78.1e100.net (216.58.214.78): icmp_seq=3 ttl=112 time=23.2 ms
+64 bytes from fra15s10-in-f14.1e100.net (216.58.214.78): icmp_seq=4 ttl=112 time=22.2 ms
+64 bytes from fra15s10-in-f14.1e100.net (216.58.214.78): icmp_seq=5 ttl=112 time=22.5 ms
+^C
+--- google.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4973ms
+rtt min/avg/max/mdev = 21.453/22.474/23.236/0.625 ms
+````
+
+On effectue un nslookup : 
+
+````
+PS C:\Windows\system32> nslookup gaston.tp4.b1 10.4.1.201
+Serveur :   dns-server.tp4.b1
+Address:  10.4.1.201
+
+Nom :    gaston.tp4.b1
+Address:  10.4.1.11
+````
+
+[capture requête DNS](./tp4_Resolve_DNS.pcapng)
 
