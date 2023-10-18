@@ -87,4 +87,81 @@ DNSServer            : 8.8.8.8
                        1.1.1.1
 ``````
 
+____________
+ *J'ai changé d'ordinateur entre temps, je suis actuellement sur une tour en ethernet.* 
 
+ ipconfig sur la tour en ethernet :  
+   ``````
+   PS C:\Users\MedeWiKK> ipconfig /all
+
+   Carte Ethernet Ethernet :
+
+   Suffixe DNS propre à la connexion. . . : home
+   Description. . . . . . . . . . . . . . : Realtek PCIe GBE Family Controller
+   Adresse physique . . . . . . . . . . . : 34-97-F6-29-ED-A1
+   DHCP activé. . . . . . . . . . . . . . : Oui
+   Configuration automatique activée. . . : Oui
+   Adresse IPv6. . . . . . . . . . . . . .: 2a01:cb19:19d:e900:94a6:9b45:128f:e453(préféré)
+   Adresse IPv6 temporaire . . . . . . . .: 2a01:cb19:19d:e900:8c71:acd0:858f:1855(préféré)
+   Adresse IPv6 de liaison locale. . . . .: fe80::2e83:9598:fc36:5b63%3(préféré)
+   Adresse IPv4. . . . . . . . . . . . . .: 192.168.1.13(préféré)
+   Masque de sous-réseau. . . . . . . . . : 255.255.255.0
+   Bail obtenu. . . . . . . . . . . . . . : mercredi 18 octobre 2023 17:29:02
+   Bail expirant. . . . . . . . . . . . . : jeudi 19 octobre 2023 17:28:59
+   Passerelle par défaut. . . . . . . . . : fe80::46a6:1eff:fe68:ff6%3
+                                       192.168.1.1
+   Serveur DHCP . . . . . . . . . . . . . : 192.168.1.1
+   ``````
+____________
+
+
+Avec la table de routage, on détermine notre route par défaut : 
+``````
+PS C:\Users\MedeWiKK> arp -a
+
+Interface : 192.168.1.13 --- 0x3
+  Adresse Internet      Adresse physique      Type
+  192.168.1.1           44-a6-1e-68-0f-f6     dynamique
+``````
+
+## II. Go Further *& BEYOND*.
+
+On ajoute un host : 
+``````
+PS C:\Users\MedeWiKK> ping b2.hello.meow
+
+Envoi d’une requête 'ping' sur b2.hello.meow [1.1.1.1] avec 32 octets de données :
+Réponse de 1.1.1.1 : octets=32 temps<1ms TTL=64
+Réponse de 1.1.1.1 : octets=32 temps<1ms TTL=64
+Réponse de 1.1.1.1 : octets=32 temps<1ms TTL=64
+Réponse de 1.1.1.1 : octets=32 temps<1ms TTL=64
+
+Statistiques Ping pour 1.1.1.1:
+    Paquets : envoyés = 4, reçus = 4, perdus = 0 (perte 0%),
+Durée approximative des boucles en millisecondes :
+    Minimum = 0ms, Maximum = 0ms, Moyenne = 0ms
+``````
+
+Adresse IP du serveur youtube : 
+``````
+PS C:\Users\MedeWiKK> netstat -af -p TCP | Select-String "192.168.1.13"
+[...]
+TCP    192.168.1.13:50351     207-182-151-170.xlhdns.com:https  ESTABLISHED
+``````
+
+Port du serveur auquel je suis connecté (443) : 
+````
+PS C:\Users\MedeWiKK> netstat -anf -p TCP | Select-String "192.168.1.13"
+[...]
+TCP    192.168.1.13:50351     207.182.151.170:443    ESTABLISHED
+````
+
+Port que mon PC a ouvert en local (50351) : 
+````
+PS C:\Users\MedeWiKK> netstat -anf -p TCP | Select-String "192.168.1.13"
+[...]
+TCP    192.168.1.13:50351     207.182.151.170:443    ESTABLISHED
+````
+______
+*Retour sur mon ordinateur portable en wifi.*
+_____
