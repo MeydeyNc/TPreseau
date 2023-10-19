@@ -2,6 +2,8 @@
 
 ## I. Basics. 
 
+![Alt text](so-basic-5b9ad1.jpg)
+
 On commence par nos adresses MAC et IP Wifi. 
 On utilise donc la commande : ``ipconfig /all`` sur windows donnant ceci : 
 ````
@@ -88,7 +90,12 @@ DNSServer            : 8.8.8.8
 ``````
 
 ____________
- *J'ai changé d'ordinateur entre temps, je suis actuellement sur une tour en ethernet.* 
+![Alt text](vxnyl.jpg)
+
+**J'ai changé d'ordinateur entre temps, je suis actuellement sur une tour en ethernet.** 
+
+ 
+____________
 
  ipconfig sur la tour en ethernet :  
    ``````
@@ -163,5 +170,88 @@ PS C:\Users\MedeWiKK> netstat -anf -p TCP | Select-String "192.168.1.13"
 TCP    192.168.1.13:50351     207.182.151.170:443    ESTABLISHED
 ````
 ______
-*Retour sur mon ordinateur portable en wifi.*
+**Retour sur mon ordinateur portable en wifi.**
 _____
+
+
+On utilise un nslookup : 
+````
+PS C:\Users\Initi> nslookup ynov.com
+Serveur :   UnKnown
+Address:  192.168.43.1
+
+Réponse ne faisant pas autorité :
+Nom :    ynov.com
+Addresses:  2606:4700:20::681a:ae9
+          2606:4700:20::ac43:4ae2
+          2606:4700:20::681a:be9
+          172.67.74.226
+          104.26.10.233
+          104.26.11.233
+````
+
+Nom de domaine de 174.43.238.89 :
+````
+PS C:\Users\Initi> nslookup 174.43.238.89
+Serveur :   UnKnown
+Address:  192.168.43.1
+
+Nom :    89.sub-174-43-238.myvzw.com
+Address:  174.43.238.89
+````
+
+On passe par 8 machines avant d'arriver à la machine demandée :
+````
+PS C:\Users\Initi> tracert www.ynov.com
+
+Détermination de l’itinéraire vers www.ynov.com [104.26.11.233]
+avec un maximum de 30 sauts :
+
+  1     2 ms     1 ms     1 ms  10.33.79.254
+  2     4 ms     2 ms     3 ms  145.117.7.195.rev.sfr.net [195.7.117.145]
+  3     4 ms     3 ms     4 ms  237.195.79.86.rev.sfr.net [86.79.195.237]
+  4     5 ms     5 ms     9 ms  196.224.65.86.rev.sfr.net [86.65.224.196]
+  5    13 ms    14 ms    13 ms  12.148.6.194.rev.sfr.net [194.6.148.12]
+  6    12 ms    12 ms    13 ms  12.148.6.194.rev.sfr.net [194.6.148.12]
+  7    16 ms    12 ms    12 ms  141.101.67.48
+  8    12 ms    13 ms    12 ms  172.71.124.4
+  9    12 ms    12 ms    12 ms  104.26.11.233
+````
+
+IP publique ynov, 2ème IP donnée ci-dessous: 
+````
+PS C:\Users\Initi> nslookup myip.opendns.com resolver1.opendns.com
+Serveur :   dns.opendns.com
+Address:  208.67.222.222
+
+Réponse ne faisant pas autorité :
+Nom :    myip.opendns.com
+Address:  195.7.117.146
+````
+
+On scan le réseau pour avoir les machines présentes : 
+````
+PS C:\Users\Initi> arp -a
+[...]
+Interface : 10.33.76.174 --- 0x16
+  Adresse Internet      Adresse physique      Type
+  10.33.64.136          e0-0a-f6-6d-2d-fd     dynamique
+  10.33.65.106          d8-f2-ca-3b-76-ee     dynamique
+  10.33.68.35           b0-3c-dc-ae-ab-6e     dynamique
+  10.33.71.99           b0-3c-dc-ae-ab-6e     dynamique
+  10.33.71.111          b0-3c-dc-ae-ab-6e     dynamique
+  10.33.79.254          7c-5a-1c-d3-d8-76     dynamique
+[...]
+````
+
+## III. Le requin-chat. 
+![requin-chat](images.jpeg)
+
+ - Pour la [Capture ARP](TPreseau\B2\TP1\arp.pcap) 
+J'ai utilisé comme seul filtre : "arp". 
+
+ - Pour la [Capture DNS](TPreseau\B2\TP1\dns.pcap) j'ai utilisé "dns" comme filtre.
+
+  - Pour la [Capture TCP](TPreseau\B2\TP1\tcp.pcap) j'ai utilisé "ip.addr == 10.33.76.174 && tcp" comme filtre, l'ip spécifié étant mon ip.
+
+
