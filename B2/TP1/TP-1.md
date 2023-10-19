@@ -1,4 +1,4 @@
-# TP 1 Maitrise réseau du Poste.
+# TP 1 Maîtrise réseau du Poste.
 
 ## I. Basics. 
 
@@ -131,9 +131,12 @@ Interface : 192.168.1.13 --- 0x3
   192.168.1.1           44-a6-1e-68-0f-f6     dynamique
 ``````
 
-## II. Go Further *& BEYOND*.
+## II. Go Further *& BEYOND*. 
+![Fuzz Lightyear](5f5d4cfbcbcd9.jpeg)
 
-On ajoute un host : 
+On ajoute un host sur windows, pas aussi simple que Linux, on doit aller chercher le ficher host : *"C:\Windows\System32\drivers\etc\hosts"* et l'éditer avec un éditeur de texte.
+
+Ce qui nous donne ceci lors du ping a postériori : 
 ``````
 PS C:\Users\MedeWiKK> ping b2.hello.meow
 
