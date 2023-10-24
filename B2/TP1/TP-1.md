@@ -250,11 +250,11 @@ Interface : 10.33.76.174 --- 0x16
 ## III. Le requin-chat. 
 ![requin-chat](images.jpeg)
 
- - Pour la [Capture ARP](TPreseau\B2\TP1\arp.pcap) 
+ - Pour la [Capture ARP](B2\TP1\arp.pcap) 
 J'ai utilisé comme seul filtre : "arp". 
 
- - Pour la [Capture DNS](TPreseau\B2\TP1\dns.pcap) j'ai utilisé "dns" comme filtre.
+ - Pour la [Capture DNS](B2\TP1\dns.pcap) j'ai utilisé "dns" comme filtre.
 
-  - Pour la [Capture TCP](TPreseau\B2\TP1\tcp.pcap) j'ai utilisé "ip.addr == 10.33.76.174 && tcp" comme filtre, l'ip spécifié étant mon ip.
+  - Pour la [Capture TCP](B2\TP1\tcp.pcap) j'ai utilisé "ip.addr == 10.33.76.174 && tcp" comme filtre, l'ip spécifié étant mon ip.
 
 
