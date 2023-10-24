@@ -2,7 +2,7 @@
 
 ## I. Basics. 
 
-![Alt text](so-basic-5b9ad1.jpg)
+![Alt text](/B2/TP1/images/so-basic-5b9ad1.jpg)
 
 On commence par nos adresses MAC et IP Wifi. 
 On utilise donc la commande : ``ipconfig /all`` sur windows donnant ceci : 
@@ -90,7 +90,7 @@ DNSServer            : 8.8.8.8
 ``````
 
 ____________
-![Alt text](vxnyl.jpg)
+![Alt text](/B2/TP1/images/vxnyl.jpg)
 
 **J'ai changé d'ordinateur entre temps, je suis actuellement sur une tour en ethernet.** 
 
@@ -132,7 +132,7 @@ Interface : 192.168.1.13 --- 0x3
 ``````
 
 ## II. Go Further *& BEYOND*. 
-![Fuzz Lightyear](5f5d4cfbcbcd9.jpeg)
+![Fuzz Lightyear](/B2/TP1/images/5f5d4cfbcbcd9.jpeg)
 
 On ajoute un host sur windows, pas aussi simple que Linux, on doit aller chercher le ficher host : *"C:\Windows\System32\drivers\etc\hosts"* et l'éditer avec un éditeur de texte.
 
@@ -248,13 +248,13 @@ Interface : 10.33.76.174 --- 0x16
 ````
 
 ## III. Le requin-chat. 
-![requin-chat](images.jpeg)
+![requin-chat](/B2/TP1/images/images.jpeg)
 
- - Pour la [Capture ARP](B2\TP1\arp.pcap) 
+ - Pour la [Capture ARP](/B2/TP1/arp.pcap) 
 J'ai utilisé comme seul filtre : "arp". 
 
- - Pour la [Capture DNS](B2\TP1\dns.pcap) j'ai utilisé "dns" comme filtre.
+ - Pour la [Capture DNS](/B2/TP1/dns.pcap) j'ai utilisé "dns" comme filtre.
 
-  - Pour la [Capture TCP](B2\TP1\tcp.pcap) j'ai utilisé "ip.addr == 10.33.76.174 && tcp" comme filtre, l'ip spécifié étant mon ip.
+  - Pour la [Capture TCP](/B2/TP1/tcp.pcap) j'ai utilisé "ip.addr == 10.33.76.174 && tcp" comme filtre, l'ip spécifié étant mon ip.
 
 
