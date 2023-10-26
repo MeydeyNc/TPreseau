@@ -1,6 +1,6 @@
 # Environnement Virtuel. 
 
-![Yes Corruption.](Lolcat_in_folder.jpg)
+![Yes Corruption.](/B2/TP2/images/Lolcat_in_folder.jpg)
 
 ### Compte-rendu : 
 
@@ -48,7 +48,7 @@ traceroute to 10.1.2.12 (10.1.2.12), 30 hops max, 60 byte packets
 
 ## II. Interlude accès internet. 
 
-![Yes Welcome.](<Sans titre.jpeg>)
+![Yes Welcome.](</B2/TP2/images/Sans titre.jpeg>)
 
 Nous pouvons, depuis routeur, ping une IP publique : 
 ````
@@ -182,7 +182,7 @@ J'ai pas lu la demande de rendu, mais voici l'historique de mes commandes (en to
    38  sudo firewall-cmd --list-all
 ````
 
-![Alt text](cce53b95907bc6a657c0b5f6de78d757.jpg)
+![Alt text](/B2/TP2/images/cce53b95907bc6a657c0b5f6de78d757.jpg)
 
 - Voici le fichier de configuration du serveur DHCP : 
 ````
@@ -283,7 +283,7 @@ Nous aurions pu utiliser les commandes suivantes :
 ````
 afin de récupérer une adresse par le dhcp. 
 
-![Alt text](6wnsgah6tdx51.jpg)
+![Alt text](/B2/TP2/images/6wnsgah6tdx51.jpg)
 
 ____________
 
@@ -397,5 +397,5 @@ $ curl site_nul.tp2
 
 ````
 
-![This is the end](just-started-learning-networking-and-made-this-v0-di6uv0968dtb1.webp)
+![This is the end](/B2/TP2/images/just-started-learning-networking-and-made-this-v0-di6uv0968dtb1.webp)
 *Yes it ends like this*
