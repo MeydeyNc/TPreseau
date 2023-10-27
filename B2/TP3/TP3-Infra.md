@@ -164,7 +164,7 @@ subnet 10.3.1.0 netmask 255.255.255.0 {
 }
 ````
 
-On configure les VLANs VPC3 & VPC 4 ainsi que le dhcp: 
+On configure dans l'ordre les VLANs VPC3 & VPC4 ainsi que le dhcp: 
 ````
 IOU1(config)#
 IOU1(config)#interface Ethernet1/1
@@ -197,6 +197,8 @@ IOU1(config)#exit
 On lance la demande DHCP : 
  - Pour le PC4 dans le VLAN 20 on voit bien que ça fonctionne : 
 ````
+PC4> ip dhcp -r
+DDORA
 PC4> show ip IP 10.3.1.100/24
 
 NAME        : PC4[1]
