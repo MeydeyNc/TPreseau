@@ -123,3 +123,91 @@ Les VLANs sont effectifs.
 
 ### III. Ptite VM DHCP.
 
+On installe le serveur : 
+````
+[mmederic@dhcp ~]$ sudo dnf install dhcp-server -y
+````
+
+On configure le serveur : 
+````
+[mmederic@dhcp ~]$ sudo vi /etc/dhcp/dhcpd.conf
+````
+
+Voici la conf :
+````
+[mmederic@dhcp ~]$ sudo cat /etc/dhcp/dhcpd.conf
+#
+# DHCP Server Configuration file.
+#   see /usr/share/doc/dhcp-server/dhcpd.conf .example
+#   see dhcpd.conf(5) man page
+#
+#
+option domain-name "GNS-server";
+
+option domain-name-servers 1.1.1.1;
+
+default-lease-time 600;
+
+max-lease-time 7200;
+
+authoritative;
+
+subnet 10.3.1.0 netmask 255.255.255.0 {
+        range dynamic-bootp 10.3.1.100 10.3.1.200;
+}
+````
+
+On configure les VLANs VPC3 & VPC 4 ainsi que le dhcp: 
+````
+IOU1(config)#
+IOU1(config)#interface Ethernet1/1
+IOU1(config-if)#
+IOU1(config-if)#switchport mode access
+IOU1(config-if)#
+IOU1(config-if)#switchport access vlan 20
+IOU1(config-if)#
+IOU1(config-if)#exit
+IOU1(config)#
+IOU1(config)#interface Ethernet1/2
+IOU1(config-if)#
+IOU1(config-if)#switchport mode acces
+IOU1(config-if)#
+IOU1(config-if)#switchport access vlan 10
+IOU1(config-if)#
+IOU1(config-if)#exit
+IOU1(config)#
+IOU1(config)#interface Ethernet1/0
+IOU1(config-if)#
+IOU1(config-if)#switchport mode access
+IOU1(config-if)#
+IOU1(config-if)#switchport access vlan 20
+IOU1(config-if)#
+IOU1(config-if)#exit
+IOU1(config)#
+IOU1(config)#exit
+````
+
+On lance la demande DHCP : 
+ - Pour le PC4 dans le VLAN 20 on voit bien que ça fonctionne : 
+````
+PC4> show ip IP 10.3.1.100/24
+
+NAME        : PC4[1]
+IP/MASK     : 10.3.1.100/24
+GATEWAY     : 0.0.0.0
+DNS         : 1.1.1.1
+DHCP SERVER : 10.3.1.253
+DHCP LEASE  : 597, 600/300/525
+DOMAIN NAME : GNS-server
+MAC         : 00:50:79:66:68:03
+LPORT       : 20017
+RHOST:PORT  : 127.0.0.1:20018
+MTU         : 1500
+````
+ - En ce qui concerne le PC 5 dans le VLAN 10, normal ça marche pas : 
+````
+PC5> ip dhcp -r
+DDD
+Can't find dhcp server
+````
+
