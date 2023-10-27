@@ -41,6 +41,13 @@ Total Mac Addresses for this criterion: 2
 
 ### II. VLANs
 
+On ajoute l'ip statique du nouveau VPC : 
+````
+PC3> ip 10.3.1.3
+Checking for duplicate address...
+PC3 : 10.3.1.3 255.255.255.0
+````
+
 Tout le monde peut se ping : 
 ````
 PC1> ping 10.3.1.2
