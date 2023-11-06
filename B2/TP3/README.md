@@ -1,5 +1,6 @@
-# TP3 INFRA : Prmeiers pas GNS, Cisco et VLAN.
+# TP3 INFRA : Premiers pas GNS, Cisco et VLAN.
 
+![Switch or Router ?](/B2/TP3/images/welcome-to-cisco.jpg)
 
 ### I. Dumb Switch. 
 
@@ -40,6 +41,8 @@ Total Mac Addresses for this criterion: 2
 ````
 
 ### II. VLANs
+
+![The Only VLan yes..](/B2/TP3/images/d8klyghoz3571.jpg)
 
 On ajoute l'ip statique du nouveau VPC : 
 ````
@@ -130,6 +133,8 @@ Les VLANs sont effectifs.
 
 ### III. Ptite VM DHCP.
 
+![I'm the DHCP Now](/B2/TP3/images/main-qimg-4945c35414466f58abf1479c86813543.webp)
+
 On installe le serveur : 
 ````
 [mmederic@dhcp ~]$ sudo dnf install dhcp-server -y
@@ -219,4 +224,7 @@ PC5> ip dhcp -r
 DDD
 Can't find dhcp server
 ````
+The End.
 
+![Moi quand on me dit qu'on aura pas Réseaux avant 3 semaines](/B2/TP3/images/huh_cat.jpg)
+*Moi quand on me dit qu'on aura pas Réseaux avant 3 semaines (On est le 6/11)*
