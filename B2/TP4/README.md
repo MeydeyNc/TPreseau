@@ -77,7 +77,7 @@ VLAN Name                             Status    Ports
 [...]
 ````
 
-Nous venons d'ajouter les différents VLANs sur le router : 
+Nous venons d'ajouter les différents VLANs sur le switch : 
 ````
 IOU1#show interface trunk
 
