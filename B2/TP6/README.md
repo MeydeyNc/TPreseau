@@ -2,6 +2,8 @@
 
 ## I. STP
 
+![Alt text](images/vqm9slb467g31.png)
+
 On a pu lancer un show spanning-tree sur les switchs, voici le root : 
 ````
 sw1#show spanning-tree
@@ -117,6 +119,8 @@ Et1/2               Desg FWD 100       128.7    P2p
 On vient de capturer des trames avec notre requin préféré : [tp6_stp](B2\TP6\tp6_stp.pcap)
 
 ## II. OSPF 
+
+![Alt text](images/16m1gz.jpg)
 
 On vient de finir de configurer les différentes ip statiques sur les vpc et la vm, avec une gateway : 
 ````
@@ -393,6 +397,8 @@ On peut y voir les routers qui s'envoient des infos et se répondent.
 
 ## III. DHCP relay
 
+![Alt text](images/0863c853db2696451cac839db0065a1d2ca29c97cdeff024fa95e5f8387c31d4_1.jpg)
+
 Voici le cat de la conf du dhcp : 
 ````
 [mmederic@dhcp ~]$ sudo cat /etc/dhcp/dhcpd.conf
@@ -441,24 +447,8 @@ Le service tourne !
              └─791 /usr/sbin/dhcpd -f -cf /etc/dhcp/dhcpd.conf -user dhcpd -group dhcpd --no-pid
 ````
 
-Entre temps nous avons appris pour la ligne opsf qui permet de partager une route par défaut, nous l'avons utilisé pour R5: 
-````
-R1#sh ip int br
-Interface                  IP-Address      OK? Method Status                Protocol
-FastEthernet0/0            10.6.21.1       YES NVRAM  up                    up
-FastEthernet0/1            10.6.3.254      YES NVRAM  up                    up
-FastEthernet1/0            10.6.41.1       YES NVRAM  up                    up
-FastEthernet2/0            10.6.13.1       YES NVRAM  up                    up
-R1#conf t
-Enter configuration commands, one per line.  End with CNTL/Z.
-R1(config)#interf
-R1(config)#interface f
-R1(config)#interface fastEthernet 0/1
-R1(config-if)#ip help
-R1(config-if)#ip helper-address 10.6.1.253
-R1(config-if)#exit
-R1(config)#exit
-````
+Entre temps nous avons appris pour la ligne opsf qui permet de partager une route par défaut, nous l'avons utilisé pour R5
+
 
 On vient d'ouvrir le passage au DHCP sur le R1 : 
 ````

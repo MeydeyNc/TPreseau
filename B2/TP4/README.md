@@ -1,5 +1,7 @@
 # Router-On-A-Stick
 
+![Alt text](images/just-a-couple-of-memes-i-made-for-my-college-discord-v0-7itg91pb4tb81.png)
+
 On commence par adresser toutes les ips statiques : 
  - PC1 :
 ````
@@ -54,6 +56,9 @@ MTU         : 1500
 ```` 
 
 On setup nos VLANs : 
+
+![Alt text](images/0512zukfzlv71.jpg)
+
 ````
 IOU1#show vlan
 
@@ -189,10 +194,12 @@ FastEthernet0/0            unassigned      YES NVRAM  up                    up
 FastEthernet0/0.10         10.1.10.254     YES NVRAM  up                    up
 FastEthernet0/0.20         10.1.20.254     YES NVRAM  up                    up
 FastEthernet0/0.30         10.1.30.254     YES NVRAM  up                    up
-FastEthernet0/1            unassigned      YES DHCP   up                    up
+FastEthernet0/1            192.168.122.63  YES DHCP   up                    up
 ````
 
 Configuration du Cloud ayant échoué sur windows, on a direct pris un NAT pour avoir l'accès internet. On se rappel de la capture avec pleins de TCP mais surtout HTTP chelous. 
+
+![Alt text](images/4gt7gp.jpg)
 
 On peut maintenant ping : 
 ````
@@ -226,6 +233,8 @@ toto.com icmp_seq=1 timeout
 Mais on en peut pas ping depuis les vpcs. 
 
 # III. Add a building. 
+
+![Alt text](images/lh9h1cdqrig21.jpg)
 
 Les runnings config : 
 - sw1 : 
@@ -317,35 +326,10 @@ no aaa new-model
 - R1 : 
 ````
 R1#show running-config
-Building configuration...
 
-Current configuration : 1599 bytes
-!
-version 12.4
-service timestamps debug datetime msec
-service timestamps log datetime msec
-no service password-encryption
-!
 hostname R1
 !
-boot-start-marker
-boot-end-marker
-!
-!
-no aaa new-model
-memory-size iomem 5
-no ip icmp rate-limit unreachable
-ip cef
-!
-no ip domain lookup
-!
-multilink bundle-name authenticated
-!
-archive
- log config
-  hidekeys
-!
-ip tcp synwait-time 5
+[...]
 !
 interface FastEthernet0/0
  no ip address
@@ -379,46 +363,14 @@ interface FastEthernet0/1
  duplex auto
  speed auto
 !
-interface FastEthernet1/0
- ip address dhcp
- shutdown
- duplex auto
- speed auto
-!
-interface FastEthernet2/0
- no ip address
- shutdown
- duplex auto
- speed auto
-!
-ip forward-protocol nd
-!
-!
-no ip http server
-no ip http secure-server
 ip nat inside source list 1 interface FastEthernet0/1 overload
 !
 access-list 1 permit any
 no cdp log mismatch duplex
 !
-control-plane
-!
-line con 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
-line aux 0
- exec-timeout 0 0
- privilege level 15
- logging synchronous
-line vty 0 4
- login
-!
-!
-end
 ````
 
-*j'ai volontairement réduit les "!" pour que ça prenne moins de place.*
+*j'ai volontairement réduit les infos pour que ça soit moins chiant à lire.*
 
 
 Nous venons de mettre en place notre beau serveur dhcp : 
@@ -514,3 +466,5 @@ ynov.com resolved to 172.67.74.226
 ````
 
 C'était bieng. Merci. 
+
+![Alt text](images/images.jpg)

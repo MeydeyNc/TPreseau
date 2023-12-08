@@ -1,8 +1,9 @@
-# TP-5 
-
+# TP-5 Intégration
+![Alt text](images/worked-fine-in-dev-300x224.png)
 ## I. Tester.
 
 On a tenté de récupérer les fichiers à l'aide du fichier de partage temporaire de VBox == ça s'est révélé infructeux. 
+
 
 On passe à un fauduleux ``CTRL + C ; CTRL + V``  grâce à notre fabuleux SSH. 
 
@@ -63,6 +64,7 @@ On ne reçoit pas la réponse dans la console du client, cependant grâce aux lo
 
 ## II. Intégrer. 
 
+![Alt text](images/network-engineering-meme.jpg)
 
 ### 1. Environnement. 
 
@@ -170,6 +172,8 @@ On check dans le firewall :
 
 ### 3. Monitoring. 
 
+![Alt text](images/Active-Passive-Monitoring-1.jpg)
+
 On install netdata, il est ok et on a accès a l'overlay : 
 ````
 [mmederic@host ~]$ systemctl status netdata
@@ -198,6 +202,8 @@ jobs:
 
 
 ## III. Héberger
+
+![Alt text](images/6zzlyc.jpg)
 
 #### 1. Interface bridge
 
